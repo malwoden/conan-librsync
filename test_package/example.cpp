@@ -1,6 +1,6 @@
 #include <iostream>
-#include "hello.h"
+#include "librsync.h"
 
 int main() {
-    hello();
+    rs_supports_trace();
 }
