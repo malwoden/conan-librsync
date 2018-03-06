@@ -1,6 +1,5 @@
 from conans import ConanFile, CMake, tools
 
-
 class LibrsyncConan(ConanFile):
     name = "librsync"
     version = "2.0.2"
@@ -19,6 +18,8 @@ class LibrsyncConan(ConanFile):
         rsync_src_path = "%s/librsync-%s" % (self.source_folder, self.version)
         install_path = "%s/buildinstall" % self.build_folder
         cmake = CMake(self)
+        cmake.definitions["CMAKE_C_FLAGS"] = "-m32" if self.settings.arch == "x86" else "-m64"
+
         cmake.definitions["CMAKE_INSTALL_PREFIX"] = install_path
         cmake.configure(source_folder=rsync_src_path)
         cmake.build()
