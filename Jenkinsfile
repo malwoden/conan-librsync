@@ -5,7 +5,7 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-                scripts {
+                script {
                     sh "python build.py"
                 }
             }
