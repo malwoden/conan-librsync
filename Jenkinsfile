@@ -4,7 +4,7 @@ pipeline {
         stage('Build All') {
             steps {
                 cleanWs()
-                checout scm
+                checkout scm
                 scripts {
                     sh "python build.py"
                 }
