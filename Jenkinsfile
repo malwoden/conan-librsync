@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build All') {
             steps {
-                cleanWs
+                cleanWs()
                 checout scm
                 scripts {
                     sh "python build.py"
