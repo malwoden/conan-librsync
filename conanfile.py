@@ -20,6 +20,10 @@ class LibrsyncConan(ConanFile):
         cmake = CMake(self)
         cmake.definitions["CMAKE_C_FLAGS"] = "-m32" if self.settings.arch == "x86" else "-m64"
 
+        if not self.options.shared:
+            with tools.chdir(rsync_src_path):
+                tools.replace_in_file("CMakeLists.txt", "rsync SHARED", "rsync STATIC")
+
         cmake.definitions["CMAKE_INSTALL_PREFIX"] = install_path
         cmake.configure(source_folder=rsync_src_path)
         cmake.build()
